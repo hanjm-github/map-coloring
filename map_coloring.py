@@ -173,11 +173,16 @@ def colorize_map(node_index):
 	if node_index == len(nodes):
 		for i in range(len(nodes)):
 			change_region_color(nodes[i], COLORING_COLORS[nodes_color[i]])
+		
+		cv2.imwrite('processed_image.png', image)
+        
+		'''
 		cv2.imshow('Colorized Map', image)
 		key = cv2.waitKey(SLEEP_TIME_IN_MILLISECONDS)
 		if key == ESCAPE_KEY_CHARACTER:
 			cv2.destroyAllWindows()
 			exit()
+		'''
 		return
 	for i in range(len(COLORING_COLORS)):
 		is_color_valid = True
@@ -192,7 +197,7 @@ def colorize_map(node_index):
 
 # cv2.imshow('Original Map', image)
 
-print('Please wait for preprocessing...')
+#print('Please wait for preprocessing...')
 
 apply_threshold()
 image = cv2.medianBlur(image, 3)
@@ -205,11 +210,13 @@ add_graph_edges()
 
 whiten_background()
 
-print('Preprocessing finished.')
+#print('Preprocessing finished.')
 
 # cv2.imshow('Modified Map', image)
 
 colorize_map(0)
 
+'''
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+'''
